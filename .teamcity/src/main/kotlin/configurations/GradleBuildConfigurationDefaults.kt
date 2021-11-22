@@ -74,9 +74,7 @@ fun BuildFeatures.triggeredOnPullRequests(model: CIBuildModel) {
     pullRequests {
         vcsRootExtId = "Gradle_Branches_GradlePersonalBranches"
         provider = github {
-            authType = token {
-                token = "%github.bot-gradle.token%"
-            }
+            authType = vcsRoot()
             filterAuthorRole = PullRequests.GitHubRoleFilter.EVERYBODY
             filterTargetBranch = "+:*"
         }
