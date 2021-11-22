@@ -78,7 +78,7 @@ fun BuildFeatures.triggeredOnPullRequests(model: CIBuildModel) {
                 token = "%github.bot-gradle.token%"
             }
             filterAuthorRole = PullRequests.GitHubRoleFilter.EVERYBODY
-//            filterTargetBranch = model.branch.branchFilter()
+            filterTargetBranch = "+:*"
         }
     }
 }
