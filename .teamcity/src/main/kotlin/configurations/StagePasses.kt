@@ -24,6 +24,7 @@ class StagePasses(model: CIBuildModel, stage: Stage, prevStage: Stage?, stagePro
 
     features {
         publishBuildStatusToGithub(model)
+        triggeredOnPullRequests(model)
     }
 
     val enableTriggers = model.branch.enableTriggers
