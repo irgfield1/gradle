@@ -77,7 +77,7 @@ fun BuildFeatures.triggeredOnPullRequests(model: CIBuildModel) {
             authType = token {
                 token = "%github.bot-gradle.token%"
             }
-//            filterAuthorRole = PullRequests.GitHubRoleFilter.MEMBER
+            filterAuthorRole = PullRequests.GitHubRoleFilter.EVERYBODY
 //            filterTargetBranch = model.branch.branchFilter()
         }
     }
