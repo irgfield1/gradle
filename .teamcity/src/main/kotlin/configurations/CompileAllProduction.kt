@@ -10,6 +10,7 @@ class CompileAllProduction(model: CIBuildModel, stage: Stage) : BaseGradleBuildT
 
     features {
         publishBuildStatusToGithub(model)
+        triggeredOnPullRequests(model)
     }
 
     applyDefaults(
