@@ -76,7 +76,7 @@ fun BuildFeatures.triggeredOnPullRequests(model: CIBuildModel) {
         provider = github {
             authType = vcsRoot()
             filterAuthorRole = PullRequests.GitHubRoleFilter.EVERYBODY
-            filterTargetBranch = "+:*"
+            filterTargetBranch = "+:refs/heads/master"
         }
     }
 }
