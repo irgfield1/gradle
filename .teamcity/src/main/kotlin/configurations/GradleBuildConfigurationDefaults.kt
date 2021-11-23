@@ -72,7 +72,7 @@ fun BuildFeatures.publishBuildStatusToGithub(model: CIBuildModel) {
 
 fun BuildFeatures.triggeredOnPullRequests(model: CIBuildModel) {
     pullRequests {
-        vcsRootExtId = "Gradle_Branches_GradlePersonalBranches"
+        vcsRootExtId = "Gradle_Experimental_Branches"
         provider = github {
             authType = vcsRoot()
             filterAuthorRole = PullRequests.GitHubRoleFilter.EVERYBODY
@@ -83,7 +83,7 @@ fun BuildFeatures.triggeredOnPullRequests(model: CIBuildModel) {
 
 fun BuildFeatures.publishBuildStatusToGithub() {
     commitStatusPublisher {
-        vcsRootExtId = "Gradle_Branches_GradlePersonalBranches"
+        vcsRootExtId = "Gradle_Experimental_Branches"
         publisher = github {
             githubUrl = "https://api.github.com"
             authType = personalToken {
