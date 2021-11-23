@@ -31,5 +31,6 @@ fun VersionedSettingsBranch.branchFilter() = """
 
 fun branchesFilterExcluding(vararg excludedBranch: String) = """
 -:<default>
++:*
 ${excludedBranch.joinToString("\n") { "-:$it" }}
 """
