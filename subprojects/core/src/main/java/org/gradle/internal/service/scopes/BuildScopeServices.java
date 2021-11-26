@@ -342,6 +342,7 @@ public class BuildScopeServices extends DefaultServiceRegistry {
         IsolatableFactory isolatableFactory,
         ServiceRegistry services,
         GradleProperties gradleProperties,
+        ExecFactory execFactory,
         ListenerManager listenerManager
     ) {
         return new DefaultValueSourceProviderFactory(
@@ -349,6 +350,7 @@ public class BuildScopeServices extends DefaultServiceRegistry {
             instantiatorFactory,
             isolatableFactory,
             gradleProperties,
+            new DefaultExecOperations(execFactory),
             services
         );
     }
