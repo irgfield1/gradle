@@ -41,6 +41,7 @@ import org.gradle.api.internal.provider.sources.EnvironmentVariableValueSource
 import org.gradle.api.internal.provider.sources.FileContentValueSource
 import org.gradle.api.internal.provider.sources.GradlePropertyValueSource
 import org.gradle.api.internal.provider.sources.SystemPropertyValueSource
+import org.gradle.api.internal.provider.sources.process.ProcessOutputValueSource
 import org.gradle.api.provider.ValueSourceParameters
 import org.gradle.api.tasks.util.PatternSet
 import org.gradle.configurationcache.UndeclaredBuildInputListener
@@ -216,6 +217,10 @@ class ConfigurationCacheFingerprintWriter(
             is EnvironmentVariableValueSource.Parameters -> {
                 envVariableRead(parameters.variableName.get(), obtainedValue.value.get() as? String, null)
             }
+            is ProcessOutputValueSource.Parameters -> {
+                sink().write(ValueSource(obtainedValue.uncheckedCast()))
+                reportExternalProcessOutputRead(ProcessOutputValueSource.Parameters.getExecutable(parameters))
+            }
             else -> {
                 captureValueSource(obtainedValue)
             }
@@ -308,6 +313,14 @@ class ConfigurationCacheFingerprintWriter(
         reportInput(consumer = null, documentationSection = null) {
             text("build logic input of type ")
             reference(valueSourceType.simpleName)
+        }
+    }
+
+    private
+    fun reportExternalProcessOutputRead(executable: String) {
+        reportInput(consumer = null, documentationSection = null) {
+            text("output of the external process ")
+            reference(executable)
         }
     }
 
